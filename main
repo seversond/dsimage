@@ -1,15 +1,38 @@
 #!/bin/bash
+echo "`date` start" > /tmp/install.out
 cd /tmp
+#
+# baseline apt setup
+#
 apt-get update
 apt-get upgrade --assume-yes
+# 
+# firewall setup
+#
 apt-get install ufw
 ufw default deny incoming
 ufw default allow outgoing
 ufw limit ssh
 ufw --force enable
+#
+# general package install
+#
 wget https://raw.githubusercontent.com/seversond/dsimage/master/packages
 apt-get install --assume-yes $(grep -vE "^\s*#" packages | tr "\n" " ")
+# 
+# rstudio server setup
+#
 wget https://download2.rstudio.org/rstudio-server-1.0.136-amd64.deb
 gdebi rstudio-server-1.0.136-amd64.deb
+#
+# pip setup
+#
+pip install --upgrade pip
+pip install jupyter
+#
+# R setup
+#
 wget https://raw.githubusercontent.com/seversond/dsimage/master/Rinst
 Rscript Rinst
+#
+echo "`date` end" >> /tmp/install.out

@@ -1875,3 +1875,7 @@ zerofree
 zip
 zlib1g:amd64
 zlib1g-dev:amd64
+python-pip
+python-dev
+ipython
+ipython-notebook
