@@ -1,9 +1,13 @@
+cd /tmp
 apt-get update
 apt-get install ufw
 ufw default deny incoming
 ufw default allow outgoing
 ufw limit ssh
 ufw --force enable
-#wget
-#apt-get install $(grep -vE "^\s*#" packages | tr "\n" " ")
-#dpkg -i <rstudio.deb>
+wget https://raw.githubusercontent.com/seversond/dsimage/master/packages
+apt-get install $(grep -vE "^\s*#" packages | tr "\n" " ")
+wget https://download2.rstudio.org/rstudio-server-1.0.136-amd64.deb
+gdebi rstudio-server-1.0.136-amd64.deb
+wget https://raw.githubusercontent.com/seversond/dsimage/master/Rinst
+Rscript Rinst
