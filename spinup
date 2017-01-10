@@ -1,0 +1,5 @@
+type=$1
+aws ec2 run-instances --image-id ami-2ef48339 --count 1 --instance-type $type \
+ --key-name 2016oct --security-group-ids sg-46e3c03c --subnet-id subnet-a6d0cf8c \
+ --user-data file://main \
+ --placement AvailabilityZone=us-east-1e --associate-public-ip-address
